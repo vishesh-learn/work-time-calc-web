@@ -1,0 +1,29 @@
+body{
+  margin: 0;
+  font-family: consolas;
+}
+
+input{
+  font-size: 20px;
+  border: 1px solid;
+  padding: 0px 10px;
+}
+
+.formElement{
+  font-size: 20px;
+  padding: 30px 20px;
+}
+
+.formLabel{
+  float: left;
+}
+
+.formValue{
+  float: right;
+}
+
+#calculateButton{
+  padding: 5px 10px;
+  font-size: 20px;
+  float: right;
+}

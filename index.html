@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+
+    <link rel="stylesheet" href="main.css">
+
+    <title>my-electron-app</title>
+  </head>
+  <body>
+    <div class="form">
+      <div class="formElement">
+        <div class="formLabel">Current worked time:</div>
+        <input class="formValue" type="time" id="currentWorkedTime" value="00:00">
+      </div>
+      <div class="formElement">
+        <div class="formLabel">Total working time:</div>
+        <input class="formValue" type="time" id="totalWorkingTime" value="08:00">
+      </div>
+      <div class="formElement">
+        <div class="formLabel">Time difference:</div>
+        <div class="formValue" id="timeRemaining">--:--</div>
+      </div>
+      <div class="formElement">
+        <div class="formLabel">Finishing time:</div>
+        <div class="formValue" id="finishingTime">--:--</div>
+      </div>
+      <div class="formElement">
+        <button type="button" id="calculateButton">Calculate</button>
+      </div>
+    </div>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>
