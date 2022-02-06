@@ -1,35 +1,38 @@
 window.onload = () => {
   calculateTime();
 
-  const Element_currentWorkedTime = document.getElementById('currentWorkedTime');
+  const Element_currentWorkedHour = document.getElementById('currentWorkedHour');
+  const Element_currentWorkedMinute = document.getElementById('currentWorkedMinute');
   const Element_totalWorkingTime = document.getElementById('totalWorkingTime');
   const Element_calculateButton = document.getElementById('calculateButton');
 
-  Element_currentWorkedTime.addEventListener("change", calculateTime);
+  Element_currentWorkedHour.addEventListener("change", calculateTime);
+  Element_currentWorkedMinute.addEventListener("input", calculateTime);
   Element_totalWorkingTime.addEventListener("change", calculateTime);
   Element_calculateButton.addEventListener("click", calculateTime);
 };
 
 function calculateTime(){
-  const Element_currentWorkedTime = document.getElementById('currentWorkedTime');
+  const Element_currentWorkedHour = document.getElementById('currentWorkedHour');
+  const Element_currentWorkedMinute = document.getElementById('currentWorkedMinute');
   const Element_totalWorkingTime = document.getElementById('totalWorkingTime');
   const Element_timeRemaining = document.getElementById('timeRemaining');
   const Element_finishingTime = document.getElementById('finishingTime');
 
-  var Object_currentWorkedTime = {"h": 0, "m": 0},
-      Object_totalWorkingTime = {"h": 0, "m": 0},
+  var Object_totalWorkingTime = {"h": 0, "m": 0},
       Object_totalTimeDiff = {"h": 0, "m": 0};
 
-  var currentWorkedTime = Element_currentWorkedTime.value.split(":");
-  var totalWorkingTime = Element_totalWorkingTime.value.split(":");
+  validateHours(Element_currentWorkedHour);
+  validateDecimal(Element_currentWorkedMinute);
 
-  Object_currentWorkedTime.h = Number(currentWorkedTime[0]);
-  Object_currentWorkedTime.m = Number(currentWorkedTime[1]);
+  var currentWorkedHour = Number(Element_currentWorkedHour.value);
+  var currentWorkedMinute = Number(Element_currentWorkedMinute.value);
+  var totalWorkingTime = Element_totalWorkingTime.value.split(":");
 
   Object_totalWorkingTime.h = Number(totalWorkingTime[0]);
   Object_totalWorkingTime.m = Number(totalWorkingTime[1]);
 
-  var totalWorkedMinutes = (Object_currentWorkedTime.h * 60) + Object_currentWorkedTime.m;
+  var totalWorkedMinutes = (currentWorkedHour * 60) + currentWorkedMinute;
   var totalWorkingMinutes = (Object_totalWorkingTime.h * 60) + Object_totalWorkingTime.m;
 
   var totalMinutesDiff = Math.abs(totalWorkedMinutes - totalWorkingMinutes);
@@ -71,4 +74,13 @@ class simpleTime {
     this.h = Math.floor(totalMinutes / 60);
     this.m = totalMinutes % 60;
   }
+}
+
+function validateHours(Ele_hours){
+  var a = parseFloat(Ele_hours.value) || 0;
+  Ele_hours.value = a.toFixed(1);
+}
+
+function validateDecimal(Ele_minute){
+  Ele_minute.value = Number(Ele_minute.value);
 }

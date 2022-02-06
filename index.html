@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
@@ -14,7 +15,12 @@
     <div class="form">
       <div class="formElement">
         <div class="formLabel">Current worked time:</div>
-        <input class="formValue" type="time" id="currentWorkedTime" value="00:00">
+        <div class="formValue" id="currentWorkedTime">
+          <input type="number" id="currentWorkedHour">
+          <span>h</span>
+          <input type="decimal" id="currentWorkedMinute">
+          <span>m</span>
+        </div>
       </div>
       <div class="formElement">
         <div class="formLabel">Total working time:</div>

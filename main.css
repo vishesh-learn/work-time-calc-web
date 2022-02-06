@@ -12,14 +12,25 @@ input{
 .formElement{
   font-size: 20px;
   padding: 30px 20px;
+  display: flow-root;
 }
 
 .formLabel{
   float: left;
+  margin: 0 10px 10px 0;
 }
 
 .formValue{
   float: right;
+}
+
+#currentWorkedTime *{
+  display: inline;
+}
+
+#currentWorkedTime input{
+  width: 70px;
+  height: 30px;
 }
 
 #calculateButton{
