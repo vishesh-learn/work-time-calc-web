@@ -24,11 +24,11 @@ input{
   float: right;
 }
 
-#currentWorkedTime *{
+.formValue *{
   display: inline;
 }
 
-#currentWorkedTime input{
+.formValue input{
   width: 70px;
   height: 30px;
 }

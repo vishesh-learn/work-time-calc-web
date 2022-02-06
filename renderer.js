@@ -3,37 +3,47 @@ window.onload = () => {
 
   const Element_currentWorkedHour = document.getElementById('currentWorkedHour');
   const Element_currentWorkedMinute = document.getElementById('currentWorkedMinute');
-  const Element_totalWorkingTime = document.getElementById('totalWorkingTime');
+
+  const Element_totalWorkingHour = document.getElementById('totalWorkingHour');
+  const Element_totalWorkingMinute = document.getElementById('totalWorkingMinute');
+
   const Element_calculateButton = document.getElementById('calculateButton');
 
   Element_currentWorkedHour.addEventListener("change", calculateTime);
   Element_currentWorkedMinute.addEventListener("input", calculateTime);
-  Element_totalWorkingTime.addEventListener("change", calculateTime);
+
+  Element_totalWorkingHour.addEventListener("change", calculateTime);
+  Element_totalWorkingMinute.addEventListener("input", calculateTime);
+
   Element_calculateButton.addEventListener("click", calculateTime);
 };
 
 function calculateTime(){
   const Element_currentWorkedHour = document.getElementById('currentWorkedHour');
   const Element_currentWorkedMinute = document.getElementById('currentWorkedMinute');
-  const Element_totalWorkingTime = document.getElementById('totalWorkingTime');
+
+  const Element_totalWorkingHour = document.getElementById('totalWorkingHour');
+  const Element_totalWorkingMinute = document.getElementById('totalWorkingMinute');
+
   const Element_timeRemaining = document.getElementById('timeRemaining');
   const Element_finishingTime = document.getElementById('finishingTime');
 
-  var Object_totalWorkingTime = {"h": 0, "m": 0},
-      Object_totalTimeDiff = {"h": 0, "m": 0};
+  var Object_totalTimeDiff = {"h": 0, "m": 0};
 
   validateHours(Element_currentWorkedHour);
+  validateHours(Element_totalWorkingHour);
+
   validateDecimal(Element_currentWorkedMinute);
+  validateDecimal(Element_totalWorkingMinute);
 
   var currentWorkedHour = Number(Element_currentWorkedHour.value);
   var currentWorkedMinute = Number(Element_currentWorkedMinute.value);
-  var totalWorkingTime = Element_totalWorkingTime.value.split(":");
 
-  Object_totalWorkingTime.h = Number(totalWorkingTime[0]);
-  Object_totalWorkingTime.m = Number(totalWorkingTime[1]);
+  var totalWorkingHour = Number(Element_totalWorkingHour.value);
+  var totalWorkingMinute = Number(Element_totalWorkingMinute.value);
 
   var totalWorkedMinutes = (currentWorkedHour * 60) + currentWorkedMinute;
-  var totalWorkingMinutes = (Object_totalWorkingTime.h * 60) + Object_totalWorkingTime.m;
+  var totalWorkingMinutes = (totalWorkingHour * 60) + totalWorkingMinute;
 
   var totalMinutesDiff = Math.abs(totalWorkedMinutes - totalWorkingMinutes);
 
