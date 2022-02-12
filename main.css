@@ -32,9 +32,3 @@ input{
   width: 30px;
   height: 30px;
 }
-
-#calculateButton{
-  padding: 5px 10px;
-  font-size: 20px;
-  float: right;
-}

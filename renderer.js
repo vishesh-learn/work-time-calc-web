@@ -2,21 +2,7 @@ window.onload = () => {
   getStoredData();
   calculateTime();
 
-  const Ele_currentWorkedHour = document.getElementById('currentWorkedHour');
-  const Element_currentWorkedMinute = document.getElementById('currentWorkedMinute');
-
-  const Element_totalWorkingHour = document.getElementById('totalWorkingHour');
-  const Element_totalWorkingMinute = document.getElementById('totalWorkingMinute');
-
-  const Element_calculateButton = document.getElementById('calculateButton');
-
-  Ele_currentWorkedHour.addEventListener("input", activity);
-  Element_currentWorkedMinute.addEventListener("input", activity);
-
-  Element_totalWorkingHour.addEventListener("input", activity);
-  Element_totalWorkingMinute.addEventListener("input", activity);
-
-  Element_calculateButton.addEventListener("click", calculateTime);
+  document.getElementsByTagName("body")[0].addEventListener("input", activity);
 };
 
 function activity(){
@@ -45,7 +31,7 @@ function getStoredData(){
 
 function calculateTime(){
   const Ele_currentWorkedHour = document.getElementById('currentWorkedHour');
-  const Element_currentWorkedMinute = document.getElementById('currentWorkedMinute');
+  const Ele_currentWorkedMinute = document.getElementById('currentWorkedMinute');
 
   const Element_totalWorkingHour = document.getElementById('totalWorkingHour');
   const Element_totalWorkingMinute = document.getElementById('totalWorkingMinute');
@@ -56,7 +42,7 @@ function calculateTime(){
   var Object_totalTimeDiff = {"h": 0, "m": 0};
 
   var currentWorkedHour = Number(Ele_currentWorkedHour.value);
-  var currentWorkedMinute = Number(Element_currentWorkedMinute.value);
+  var currentWorkedMinute = Number(Ele_currentWorkedMinute.value);
 
   var totalWorkingHour = Number(Element_totalWorkingHour.value);
   var totalWorkingMinute = Number(Element_totalWorkingMinute.value);
