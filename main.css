@@ -11,7 +11,7 @@ input{
 
 .formElement{
   font-size: 20px;
-  padding: 30px 20px;
+  padding: 15px 20px;
   display: flow-root;
 }
 
@@ -29,7 +29,7 @@ input{
 }
 
 .formValue input{
-  width: 70px;
+  width: 30px;
   height: 30px;
 }
 

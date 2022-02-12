@@ -9,28 +9,30 @@
 
     <link rel="stylesheet" href="main.css">
 
-    <title>my-electron-app</title>
+    <title>work-time-calc</title>
   </head>
   <body>
     <div class="form">
       <div class="formElement">
-        <div class="formLabel">Current worked time:</div>
-        <div class="formValue">
-          <input type="number" id="currentWorkedHour">
-          <span>h</span>
-          <input type="decimal" id="currentWorkedMinute">
-          <span>m</span>
-        </div>
-      </div>
-      <div class="formElement">
         <div class="formLabel">Total working time:</div>
         <div class="formValue">
-          <input type="number" id="totalWorkingHour">
+          <input class="user_data" type="decimal" id="totalWorkingHour">
           <span>h</span>
-          <input type="decimal" id="totalWorkingMinute">
+          <input class="user_data" type="decimal" id="totalWorkingMinute">
           <span>m</span>
         </div>
       </div>
+
+      <div class="formElement">
+        <div class="formLabel">Current worked time:</div>
+        <div class="formValue">
+          <input class="user_data" type="decimal" id="currentWorkedHour">
+          <span>h</span>
+          <input class="user_data" type="decimal" id="currentWorkedMinute">
+          <span>m</span>
+        </div>
+      </div>
+
       <div class="formElement">
         <div class="formLabel">Time difference:</div>
         <div class="formValue" id="timeRemaining">--:--</div>

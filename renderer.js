@@ -1,7 +1,8 @@
 window.onload = () => {
+  getStoredData();
   calculateTime();
 
-  const Element_currentWorkedHour = document.getElementById('currentWorkedHour');
+  const Ele_currentWorkedHour = document.getElementById('currentWorkedHour');
   const Element_currentWorkedMinute = document.getElementById('currentWorkedMinute');
 
   const Element_totalWorkingHour = document.getElementById('totalWorkingHour');
@@ -9,34 +10,52 @@ window.onload = () => {
 
   const Element_calculateButton = document.getElementById('calculateButton');
 
-  Element_currentWorkedHour.addEventListener("change", calculateTime);
-  Element_currentWorkedMinute.addEventListener("input", calculateTime);
+  Ele_currentWorkedHour.addEventListener("input", activity);
+  Element_currentWorkedMinute.addEventListener("input", activity);
 
-  Element_totalWorkingHour.addEventListener("change", calculateTime);
-  Element_totalWorkingMinute.addEventListener("input", calculateTime);
+  Element_totalWorkingHour.addEventListener("input", activity);
+  Element_totalWorkingMinute.addEventListener("input", activity);
 
   Element_calculateButton.addEventListener("click", calculateTime);
 };
 
+function activity(){
+  const a = event.target;
+
+  validateNaturalNumber(a);
+
+  if(a.className.includes("user_data")){
+    localStorage[a.id] = a.value;
+  }
+
+  calculateTime();
+}
+
+function getStoredData(){
+  for(let i=0;i<localStorage.length;i++){
+    var key = localStorage.key(i);
+    var obj = document.getElementById(key);
+    if(obj != null){
+      obj.value = localStorage[key];
+    } else {
+      console.log("no object found for the key '" + key + "' in localStorage");
+    }
+  }
+}
+
 function calculateTime(){
-  const Element_currentWorkedHour = document.getElementById('currentWorkedHour');
+  const Ele_currentWorkedHour = document.getElementById('currentWorkedHour');
   const Element_currentWorkedMinute = document.getElementById('currentWorkedMinute');
 
   const Element_totalWorkingHour = document.getElementById('totalWorkingHour');
   const Element_totalWorkingMinute = document.getElementById('totalWorkingMinute');
 
   const Element_timeRemaining = document.getElementById('timeRemaining');
-  const Element_finishingTime = document.getElementById('finishingTime');
+  const Ele_finishTime = document.getElementById('finishingTime');
 
   var Object_totalTimeDiff = {"h": 0, "m": 0};
 
-  validateHours(Element_currentWorkedHour);
-  validateHours(Element_totalWorkingHour);
-
-  validateDecimal(Element_currentWorkedMinute);
-  validateDecimal(Element_totalWorkingMinute);
-
-  var currentWorkedHour = Number(Element_currentWorkedHour.value);
+  var currentWorkedHour = Number(Ele_currentWorkedHour.value);
   var currentWorkedMinute = Number(Element_currentWorkedMinute.value);
 
   var totalWorkingHour = Number(Element_totalWorkingHour.value);
@@ -60,23 +79,19 @@ function calculateTime(){
 
   var totalFinishingMinutes = totalWorkingMinutes - totalWorkedMinutes + currentTotalMinutes;
 
-  const Object_finishingTime = new simpleTime(totalFinishingMinutes);
+  const Obj_finishTime = new simpleTime(totalFinishingMinutes);
 
-  var finishingHours = Object_finishingTime.h, apm = "am";
+  var finishingHours = Obj_finishTime.h, apm = "am";
 
-  console.log(totalFinishingMinutes);
-  console.log(Object_finishingTime);
+  var a = Math.ceil(Obj_finishTime.h / 12);
 
-  var a = Math.ceil(Object_finishingTime.h / 12);
-  console.log(a);
-
-  if(Object_finishingTime.h >= 12){
+  if(Obj_finishTime.h >= 12){
     finishingHours -= (a-1)*12;
 
     if(a % 2 == 0) apm = "pm";
   }
 
-  Element_finishingTime.innerText = finishingHours + ":" + Object_finishingTime.m + " " + apm;
+  Ele_finishTime.innerText = finishingHours + ":" + Obj_finishTime.m + " " + apm;
 }
 
 class simpleTime {
@@ -86,11 +101,6 @@ class simpleTime {
   }
 }
 
-function validateHours(Ele_hours){
-  var a = parseFloat(Ele_hours.value) || 0;
-  Ele_hours.value = a.toFixed(1);
-}
-
-function validateDecimal(Ele_minute){
-  Ele_minute.value = Number(Ele_minute.value);
+function validateNaturalNumber(Ele_hours){
+  Ele_hours.value = Number(Ele_hours.value);
 }
