@@ -32,3 +32,17 @@ input{
   width: 30px;
   height: 30px;
 }
+
+#playTimer{
+  width: 30px;
+  height: 30px;
+  border: 0;
+}
+
+.play{
+  background-image: url(images/play-button.svg);
+}
+
+.stop{
+  background-image: url(images/pause-button.svg);
+}

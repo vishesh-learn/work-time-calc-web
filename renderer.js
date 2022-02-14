@@ -1,17 +1,20 @@
+var timer1;
+
 window.onload = () => {
   getStoredData();
   calculateTime();
 
-  document.getElementsByTagName("body")[0].addEventListener("input", activity);
+  const playButton = document.getElementById("playTimer");
+
+  playButton.addEventListener("click", playTimer);
+  document.getElementsByTagName("body")[0].addEventListener("input", () => activity(event.target));
 };
 
-function activity(){
-  const a = event.target;
+function activity(e){
+  validateNaturalNumber(e);
 
-  validateNaturalNumber(a);
-
-  if(a.className.includes("user_data")){
-    localStorage[a.id] = a.value;
+  if(e.className.includes("user_data")){
+    localStorage[e.id] = e.value;
   }
 
   calculateTime();
@@ -89,4 +92,37 @@ class simpleTime {
 
 function validateNaturalNumber(Ele_hours){
   Ele_hours.value = Number(Ele_hours.value);
+}
+
+function playTimer() {
+  const Ele_currentWorkedHour = document.getElementById('currentWorkedHour');
+  const Ele_currentWorkedMinute = document.getElementById('currentWorkedMinute');
+  const playButton = document.getElementById("playTimer");
+
+  timer1 = setInterval(() => {
+    if(Number(Ele_currentWorkedMinute.value) < 59){
+      Ele_currentWorkedMinute.value = Number(Ele_currentWorkedMinute.value) + 1;
+    } else {
+      Ele_currentWorkedHour.value = Number(Ele_currentWorkedHour.value) + 1;
+      Ele_currentWorkedMinute.value = 0;
+    }
+
+    activity(Ele_currentWorkedMinute);
+  }, 60000);
+
+
+  playButton.classList.add("stop");
+  playButton.removeEventListener("click", playTimer);
+  playButton.addEventListener("click", stopTimer);
+}
+
+function stopTimer(){
+  const playButton = document.getElementById("playTimer");
+
+  clearInterval(timer1);
+
+
+  playButton.classList.remove("stop");
+  playButton.removeEventListener("click", stopTimer);
+  playButton.addEventListener("click", playTimer);
 }
