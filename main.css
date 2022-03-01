@@ -1,6 +1,7 @@
 body{
   margin: 0;
   font-family: consolas;
+  background-color: #ffffff;
 }
 
 input{
@@ -37,6 +38,7 @@ input{
   width: 30px;
   height: 30px;
   border: 0;
+  background-color: inherit;
 }
 
 .play{

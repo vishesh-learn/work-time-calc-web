@@ -8,6 +8,8 @@ window.onload = () => {
 
   playButton.addEventListener("click", playTimer);
   document.getElementsByTagName("body")[0].addEventListener("input", () => activity(event.target));
+
+  setInterval(calculateTime, 1000);
 };
 
 function activity(e){
@@ -107,8 +109,9 @@ function playTimer() {
       Ele_currentWorkedMinute.value = 0;
     }
 
+    activity(Ele_currentWorkedHour);
     activity(Ele_currentWorkedMinute);
-  }, 60000);
+  }, 60 * 1000);
 
 
   playButton.classList.add("stop");
