@@ -1,49 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
 
-    <link rel="stylesheet" href="main.css">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-    <title>work-time-calc</title>
-  </head>
-  <body>
-    <div class="form">
-      <div class="formElement">
-        <div class="formLabel">Total working time:</div>
-        <div class="formValue">
-          <input class="user_data" type="decimal" id="totalWorkingHour">
-          <span>h</span>
-          <input class="user_data" type="decimal" id="totalWorkingMinute">
-          <span>m</span>
-        </div>
+  <link rel="stylesheet" href="main.css">
+
+  <title>work-time-calc</title>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <div class="header-text">
+        <h1>Work Time Calculator</h1>
+        <p>Calculate your work time</p>
       </div>
 
-      <div class="formElement">
-        <div class="formLabel">Current worked time:</div>
-        <div class="formValue">
-          <input class="user_data" type="decimal" id="currentWorkedHour">
-          <span>h</span>
-          <input class="user_data" type="decimal" id="currentWorkedMinute">
-          <span>m</span>
-          <button class="play" id="playTimer"></button>
-        </div>
-      </div>
+      <button class="play-button" id="play-timer"></button>
+    </div>
+  </header>
 
-      <div class="formElement">
-        <div class="formLabel">Time difference:</div>
-        <div class="formValue" id="timeRemaining">--:--</div>
-      </div>
-      <div class="formElement">
-        <div class="formLabel">Finishing time:</div>
-        <div class="formValue" id="finishingTime">--:--</div>
+  <div class="form">
+    <div class="form-element">
+      <div class="form-label">Total working time:</div>
+      <div class="form-value">
+        <input class="user-data" type="decimal" id="totalWorkingHour" value="8"><span class="hour-unit-text">h</span>
+        <input class="user-data" type="decimal" id="totalWorkingMinute" value="0"><span>m</span>
       </div>
     </div>
 
-    <script src="./renderer.js"></script>
-  </body>
+    <div class="form-element">
+      <div class="form-label">Current worked time:</div>
+      <div class="form-value">
+        <input class="user-data" type="decimal" id="currentWorkedHour" value="0"><span class="hour-unit-text">h</span>
+        <input class="user-data" type="decimal" id="currentWorkedMinute" value="0"><span>m</span>
+      </div>
+    </div>
+
+    <div class="form-element">
+      <div class="form-label">Time difference:</div>
+      <div class="form-value" id="timeRemaining">--:--</div>
+    </div>
+    <div class="form-element">
+      <div class="form-label">Finishing time:</div>
+      <div class="form-value" id="finishingTime">--:--</div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
 </html>
